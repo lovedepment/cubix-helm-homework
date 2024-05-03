@@ -9,3 +9,13 @@ kubectl delete namespace hw4-prod
 
 ## create initial helm skeleton
 helm create hw4
+
+kubectl config set-context --current --namespace=hw4-dev
+kubectl config get-contexts
+
+helm install hw4 -n hw4-dev -f values-dev-frontapp.yaml
+helm template hw4 . -n hw4-dev -f values-dev-frontapp.yaml
+
+helm upgrade --install hw4 . -n hw4-dev -f values-dev-frontapp.yaml
+
+kubectl get pods -w -n hw4-dev
