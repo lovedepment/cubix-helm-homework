@@ -1,0 +1,11 @@
+### namespaces hw4-dev,hw4-test, hw4-prod
+kubectl create namespace hw4-dev
+kubectl create namespace hw4-test
+kubectl create namespace hw4-prod
+
+kubectl delete namespace hw4-dev
+kubectl delete namespace hw4-test
+kubectl delete namespace hw4-prod
+
+## create initial helm skeleton
+helm create hw4
