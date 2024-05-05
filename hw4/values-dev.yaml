@@ -4,8 +4,13 @@
 
 replicaCount: 1
 
+different_image:
+  frontapp:
+    repository: quay.io/drsylent/cubix/block3/homework-frontapp
+  backapp:
+    repository: quay.io/drsylent/cubix/block3/homework-backapp
+
 image:
-  repository: quay.io/drsylent/cubix/block3/homework-frontapp
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "springboot3"

@@ -50,7 +50,6 @@ app.kubernetes.io/name: {{ include "hw4.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 training: block4
-homework: frontapp
 {{- end }}
 
 {{/*
