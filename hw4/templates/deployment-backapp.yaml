@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backapp
+  name: {{ include "hw4.fullname" . }}-backapp
   labels:
     {{- include "hw4.labels" . | nindent 4 }}
 spec:
@@ -32,6 +32,11 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          env:
+          - name: APP_DEFAULT_MESSAGE
+            value: backapp
+          - name: JAVA_OPTS
+          value: -Dspring.main.banner-mode=off
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.different_image.backapp.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"

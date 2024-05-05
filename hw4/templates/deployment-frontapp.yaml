@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontapp
+  name: {{ include "hw4.fullname" . }}-frontapp
   labels:
     {{- include "hw4.labels" . | nindent 4 }}
 spec:
@@ -32,6 +32,13 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          env:
+          - name: APP_DEFAULT_MESSAGE
+            value: frontapp
+          - name: BACK_URL
+            value:  hw4:8080
+          - name: JAVA_OPTS
+            value:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.different_image.frontapp.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
